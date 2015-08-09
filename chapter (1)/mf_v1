@@ -1,0 +1,10 @@
+SRC_DIR := ./src
+BIN_DIR := ./bin
+INC_DIR := ./include
+OBJS_SRC := $(wildcard $(SRC_DIR)/*.c)
+OBJS_OBJ :=$(patsubst %.c, %.o, $(OBJS_SRC))
+$(BIN_DIR)/main.exe: $(OBJS_OBJ)
+	gcc -g -o $@ $(OBJS_OBJ) -I$(INC_DIR)
+$(SRC_DIR)/%.o:$(SRC_DIR)/%.c
+	gcc -o $@ -c $< -I$(INC_DIR)
+
